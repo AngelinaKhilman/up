@@ -1,0 +1,11 @@
+commit 21f75c16b744f74d083e0c1dd19ac5f66025fb1d (HEAD -> master)
+Author: Angelina Khilman <hilman1999@mail.ru>
+Date:   Mon Feb 12 07:35:43 2018 -0800
+
+    add task1/status.txt
+
+commit 28050f8ce7387ebdf47076ae61ddf3ca50e62274
+Author: Angelina Khilman <hilman1999@mail.ru>
+Date:   Mon Feb 12 07:31:32 2018 -0800
+
+    add .gitignore
