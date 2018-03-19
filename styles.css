@@ -1,0 +1,92 @@
+h3 {
+    margin: 15px 0;
+    font-family: San Francisco, Helvetica, Arial, sun-serif;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+body {
+    background: #000000;
+}
+
+p {
+    margin: 15px 0;
+    font-family: San Francisco, Helvetica, Arial, sun-serif;
+    font-size: 14px;
+    vertical-align: bottom;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+div {
+    border: 2px solid #000;
+    background: url('img/photo1.JPG') 100% 100% no-repeat 300 px, 100px;
+    background-size: 300 px, 100px;
+}
+
+.add-post>i {
+    font-size: 8em;
+    color: white;
+}
+
+.edit-post,
+.like-bar {
+    float: right;
+}
+
+.edit-post>i {
+    font-size: 3em;
+    color: white;
+}
+
+.like-bar>i {
+    font-size: 3em;
+    color: red;
+}
+
+.author {
+    display: inline;
+}
+
+.post-description {
+    color: white;
+}
+
+.search-bar {
+    vertical-align: top;
+}
+
+.search {
+    display: inline;
+    float: left;
+    width: 90%;
+    background: #fafafa;
+    border: 0 none;
+    border-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.7s ease 0s;
+    margin: 3px 3px;
+}
+
+.sign-out {
+    font-size: 3em;
+    color: white;
+}
+
+.post {
+    padding: 30px 0px;
+}
+
+.add-more {
+    padding-top: 40px;
+}
+
+.add-more>button {
+    background: white;
+    border: none;
+    width: 100%;
+    height: 50px;
+}
