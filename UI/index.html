@@ -8,6 +8,8 @@
     <title>Bubbles</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <script src="js/photoPostsModule.js"></script>
+    <script src="js/domModule.js"></script>
 </head>
 
 <body>
@@ -18,193 +20,218 @@
                 <img src="img/logo_small.jpg" align="left">
             </th>
             <th>
-                <p align="right"><img src="img/user_small.jpg" alt="angelinakhilman" align="right"> angelinakhilman
+                <div align="right">
+                    <img src="img/user_small.jpg" alt="angelinakhilman" align="right">
+                    <p class="current-username"></p>     
                     <i class="fas fa-sign-out-alt sign-out"></i>
-                </p>
+                </div>
             </th>
         </tr>
         <tr>
             <td valign="top">
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
+                <div class="post-container">
+                        <!-- <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
                         </div>
-                        <div class="post-description">
-                            Sample description
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post">
+                            <p class="author">
+                                <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
+                            </p>
+                            <div class="edit-post">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <a>
+                                <img src="img/photo1.JPG" width="100%" valign="middle" align="center">
+                            </a>
+                            <div class="post-footer">
+                                <div class="like-bar">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="post-description">
+                                    Sample description
+                                </div>
+                            </div>
+                        </div> -->
                 </div>
-                <div class="post">
-                    <p class="author">
-                            <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <p class="author">
-                        <img src="img/user_small.jpg" alt="angelinakhilman" align="center"> angelinakhilman
-                    </p>
-                    <div class="edit-post">
-                        <i class="fas fa-pencil-alt"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <a><img src="img/photo1.JPG" width="100%" valign="middle" align="center"></a>
-                    <div class="post-footer">
-                        <div class="like-bar">
-                            <i class="far fa-heart"></i>
-                        </div>
-                        <div class="post-description">
-                            Sample description
-                        </div>
-                    </div>
-                </div>
+
                 <div class="add-more">
                     <button>more posts</button>
                 </div>

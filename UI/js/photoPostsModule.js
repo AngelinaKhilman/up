@@ -6,23 +6,23 @@ let photoPostsModule = (function () {
             description: 'Это пост 1',
             createdAt: new Date('2018-03-03T20:11:31'),
             author: 'author1',
-            photoLink: 'img/photo1',
+            photoLink: 'img/photo1.JPG',
         },
         {
             id: '2',
             description: 'Это пост 2',
             createdAt: new Date('2018-03-03T19:01:56'),
             author: 'author2',
-            photoLink: 'img/photo1',
+            photoLink: 'img/photo1.JPG',
         }
     ];
 
     const FIELDS_TO_FILTER = ['author', 'createdAt'];
     const ALL_FIELDS = ['id', 'description', 'createdAt', 'author', 'photoLink'];
     const EXPRESSIONS = {
-        propertyExist = (object, property) => property in object,
-        isTypeof = (object, type) => typeof (object) === type,
-        checkNonEmpty = (value) => value.length > 0
+        propertyExist: (object, property) => property.toString() in object,
+        isTypeof: (object, type) => typeof (object) === type,
+        checkNonEmpty: (value) => value.length > 0
     };
 
     function getPhotoPosts(skip = 0, top = 10, filterConfig = {}) {
@@ -39,7 +39,7 @@ let photoPostsModule = (function () {
     }
 
     function getPhotoPost(id) {
-        return postsData.find(post => post.id === id);
+        return postsData.find(post => post.id == id);
     };
 
     function validatePhotoPost(post) {

@@ -31,8 +31,7 @@ div {
     color: white;
 }
 
-.edit-post,
-.like-bar {
+.edit-post, .like-bar {
     float: right;
 }
 
@@ -74,6 +73,16 @@ div {
 .sign-out {
     font-size: 3em;
     color: white;
+}
+
+.current-username {
+    display: inline-block;
+}
+
+.photo-image {
+    width: 100%;
+    valign: middle;
+    align: center;
 }
 
 .post {
