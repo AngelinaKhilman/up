@@ -99,3 +99,12 @@ div {
     width: 100%;
     height: 50px;
 }
+
+.new-post {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+}
+.search-new-post {
+    width: auto;
+}

@@ -14,7 +14,71 @@ let photoPostsModule = (function () {
             createdAt: new Date('2018-03-03T19:01:56'),
             author: 'author2',
             photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '3',
+            description: 'Это пост 3',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '4',
+            description: 'Это пост 4',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '5',
+            description: 'Это пост 5',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '6',
+            description: 'Это пост 6',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '7',
+            description: 'Это пост 7',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '8',
+            description: 'Это пост 8',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '9',
+            description: 'Это пост 9',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '10',
+            description: 'Это пост 10',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
+        },
+        {
+            id: '11',
+            description: 'Это пост 11',
+            createdAt: new Date('2018-03-03T19:01:56'),
+            author: 'author2',
+            photoLink: 'img/photo1.JPG',
         }
+    
     ];
 
     const FIELDS_TO_FILTER = ['author', 'createdAt'];
@@ -105,12 +169,20 @@ let photoPostsModule = (function () {
         return false;
     }
 
+    function loadPosts(posts) {
+        debugger;
+        var res = JSON.stringify(postsData);
+        if (posts)
+            postsData = posts;
+    }
+
     return {
         getPhotoPost: getPhotoPost,
         getPhotoPosts: getPhotoPosts,
         validatePhotoPost: validatePhotoPost,
         addPhotoPost: addPhotoPost,
         editPhotoPost: editPhotoPost,
-        removePhotoPost: removePhotoPost
+        removePhotoPost: removePhotoPost,
+        loadPosts: loadPosts
     }
 }());

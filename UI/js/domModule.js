@@ -1,11 +1,15 @@
 var domModule = (function () {
     const TOP = 10;
-    var user = 'angelinakhilman';
+    var currentSkip = 0;
+    var userInfo = null;
 
 
-    function element(type, className, text, attributes) {
+    function element(type, className, text, attributes, events) {
         var elem = document.createElement(type);
-        elem.className = className;
+
+        if (className) {
+            elem.className = className;
+        }
 
         if (text) {
             elem.innerText = text;
@@ -13,26 +17,69 @@ var domModule = (function () {
         if (attributes)
             for (let attr in attributes)
                 elem[attr] = attributes[attr];
+        if (events)
+            for (let event in events)
+                elem.addEventListener(event, events[event]);
 
         return elem;
+    }
+
+    function renderAddPostForm(containerElement) {
+        debugger;
+        let newPostFormElement = element('div', 'post new-post');
+        newPostFormElement.appendChild(element('input', 'search search-new-post', null,
+            {
+                type: 'file',
+                placeholder: 'Photo'
+            }));
+
+        newPostFormElement.appendChild(element('input', 'search search-new-post', null,
+            {
+                type: 'text',
+                placeholder: 'Description'
+            }));
+
+        newPostFormElement.appendChild(element('button', null, 'Save',
+            { id: 'confirm-add-post-button' }, { click: actions.confirmAddPost }));
+        containerElement.insertBefore(newPostFormElement, containerElement.firstChild);
     }
 
     function getPostContainer() {
         return document.getElementsByClassName('post-container');
     }
 
-    function renderUser() {
-        if (user != null)
-            document.getElementsByClassName('current-username').innerText = user;
+    function renderUser(userContainer, user) {
+        if (user) {
+            userContainer.innerHTML = '';
+            userContainer.appendChild(element('img', null, null,
+                {
+                    src: user.photo,
+                    alt: user.login,
+                    align: 'right'
+                }));
+            userContainer.appendChild(element('p', 'current-username', user.login));
+            userContainer.appendChild(element('i', 'fas fa-sign-out-alt sign-out', null, null,
+                { click: actions.signOut }));
+            userInfo = user;
+        }
     }
 
-    function renderFeed() {
-        let data = photoPostsModule.getPhotoPosts(0, TOP, {});
-        if (data.type === 'success')
-            data = data.posts;
+    function renderFeed(containerElement, reset) {
+        if (reset)
+            currentSkip = 0;
+        let data = photoPostsModule.getPhotoPosts(currentSkip, TOP, {});
+        currentSkip += TOP;
 
         for (let i = 0; i < TOP; i++)
-            containerElement.insertBefore(generatePostElement(data[i]), containerElement.children[1]);
+            containerElement.appendChild(generatePostElement(data[i]));
+        return data.length >= TOP;
+    }
+
+    function renderAddPostButton(containerElement, user) {
+        if (user) {
+            containerElement.appendChild(element('i', 'fas fa-plus', null,
+                { id: 'add-post-button' }, { click: actions.addPost }));
+        }
     }
 
     function generatePostElement(data) {
@@ -54,12 +101,12 @@ var domModule = (function () {
             author.innerHTML += data.author;
             postElement.appendChild(author);
 
-            if (user === data.author) {
+            if (userInfo && userInfo.login === data.author) {
                 let editPostContainer = element('div', 'edit-post');
-                container.appendChild(element('i', 'fas fa-pencil-alt'));
-                container.appendChild(element('i', 'fas fa-times'));
+                editPostContainer.appendChild(element('i', 'fas fa-pencil-alt'));
+                editPostContainer.appendChild(element('i', 'fas fa-times'));
                 postElement.appendChild(editPostContainer);
-            }   
+            }
         }
 
         function addImage(postElement, data) {
@@ -112,17 +159,25 @@ var domModule = (function () {
         return true;
     }
 
+    function disableElementBy(props, listener) {
+        let element;
+        if (props.hasOwnProperty('id'))
+            element = document.getElementById(props.id);
+        else if (props.hasOwnProperty('class'))
+            element = document.getElementsByClass(props.class)[0];
+        element.removeEventListener('click', listener);
+        // element.setAttribute('disabled', 'disabled');
+    }
+
+
     return {
         renderFeed: renderFeed,
         generatePostElement: generatePostElement,
         removePost: removePost,
         editPost: editPost,
-        renderUser
+        renderUser: renderUser,
+        disableElementBy: disableElementBy,
+        renderAddPostButton: renderAddPostButton,
+        renderAddPostForm: renderAddPostForm
     }
 })();
-
-window.onload = function (e) {
-    debugger;
-    let container = document.getElementsByClassName('post-container')[0];
-    container.insertBefore(domModule.generatePostElement(1), container.children[1]);
-};
