@@ -35,7 +35,7 @@ div {
     float: right;
 }
 
-.edit-post>i {
+.edit-post>i, #decline-add-post-button {
     font-size: 3em;
     color: white;
 }
@@ -93,7 +93,7 @@ div {
     padding-top: 40px;
 }
 
-.add-more>button {
+.add-more>button, #confirm-add-post-button {
     background: white;
     border: none;
     width: 100%;
@@ -103,8 +103,9 @@ div {
 .new-post {
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 200px;
 }
+
 .search-new-post {
     width: auto;
 }

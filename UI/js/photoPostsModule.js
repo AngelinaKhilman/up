@@ -1,85 +1,7 @@
-
 let photoPostsModule = (function () {
-    let postsData = [
-        {
-            id: '1',
-            description: 'Это пост 1',
-            createdAt: new Date('2018-03-03T20:11:31'),
-            author: 'author1',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '2',
-            description: 'Это пост 2',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '3',
-            description: 'Это пост 3',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '4',
-            description: 'Это пост 4',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '5',
-            description: 'Это пост 5',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '6',
-            description: 'Это пост 6',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '7',
-            description: 'Это пост 7',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '8',
-            description: 'Это пост 8',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '9',
-            description: 'Это пост 9',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '10',
-            description: 'Это пост 10',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        },
-        {
-            id: '11',
-            description: 'Это пост 11',
-            createdAt: new Date('2018-03-03T19:01:56'),
-            author: 'author2',
-            photoLink: 'img/photo1.JPG',
-        }
-    
-    ];
+    let postsData = null;
+
+
 
     const FIELDS_TO_FILTER = ['author', 'createdAt'];
     const ALL_FIELDS = ['id', 'description', 'createdAt', 'author', 'photoLink'];
@@ -107,22 +29,17 @@ let photoPostsModule = (function () {
     };
 
     function validatePhotoPost(post) {
-
+        debugger;
         let fieldsToCheck = Object.keys(postsData[0]);
 
-
         // существование и типы
-        var allFieldWithoutDate = ALL_FIELDS.filter(obj => obj !== 'createdAt');
-        if (
-            !allFieldWithoutDate.every(field => EXPRESSIONS.propertyExist(post, field)
-                && EXPRESSIONS.isTypeof(post[field], 'string'))
-            || (!EXPRESSIONS.propertyExist(post, 'createdAt') || !EXPRESSIONS.isTypeof(post.createdAt, 'Date'))
-        )
+        if (!ALL_FIELDS.every(field => EXPRESSIONS.propertyExist(post, field)
+            && EXPRESSIONS.isTypeof(post[field], 'string')))
             return false;
 
-        // уникальность ида
-        if (postsData.some(element => element.id === post.id))
-            return false;
+        // // уникальность ида
+        // if (postsData.some(element => element.id === post.id))
+        //     return false;
 
         //проверка непустых полей
         if (!EXPRESSIONS.checkNonEmpty(post.author) || !EXPRESSIONS.checkNonEmpty(post.photoLink))
@@ -136,9 +53,15 @@ let photoPostsModule = (function () {
     }
 
     function addPhotoPost(post) {
+        post.id = (parseInt(postsData[postsData.length - 1].id) + 1).toString();
         if (!validatePhotoPost(post))
             return false;
-        return postsData.length + 1 === postsData.push(post);
+
+        if (postsData.length + 1 === postsData.push(post)) {
+            synchronizeDatabase();
+            return true;
+        }
+        return false;
     }
 
     function editPhotoPost(id, changes) {
@@ -156,6 +79,8 @@ let photoPostsModule = (function () {
             for (let property in postToChange) {
                 postToChange[property] = changes[property];
             }
+
+            synchronizeDatabase();
             return true;
         }
     }
@@ -164,17 +89,22 @@ let photoPostsModule = (function () {
         let index = postsData.findIndex(post => post.id === id);
         if (index != -1) {
             postsData.splice(index, 1);
+            synchronizeDatabase();
             return true;
         }
         return false;
     }
 
     function loadPosts(posts) {
-        debugger;
-        var res = JSON.stringify(postsData);
-        if (posts)
+        postsData = JSON.parse(window.localStorage.getItem('posts'));
+        if (!postsData && posts)
             postsData = posts;
     }
+
+    function synchronizeDatabase() {
+        window.localStorage.setItem('posts', JSON.stringify(postsData));
+    }
+
 
     return {
         getPhotoPost: getPhotoPost,

@@ -25,23 +25,40 @@ var domModule = (function () {
     }
 
     function renderAddPostForm(containerElement) {
-        debugger;
         let newPostFormElement = element('div', 'post new-post');
+
+        newPostFormElement.appendChild(element('i', 'fas fa-times', null,
+            { id: 'decline-add-post-button' }, { click: actions.declineAddPost }));
+
         newPostFormElement.appendChild(element('input', 'search search-new-post', null,
             {
+                id: 'add-post-photo',
                 type: 'file',
                 placeholder: 'Photo'
             }));
 
         newPostFormElement.appendChild(element('input', 'search search-new-post', null,
             {
+                id: 'add-post-description',
                 type: 'text',
                 placeholder: 'Description'
             }));
 
         newPostFormElement.appendChild(element('button', null, 'Save',
             { id: 'confirm-add-post-button' }, { click: actions.confirmAddPost }));
+
         containerElement.insertBefore(newPostFormElement, containerElement.firstChild);
+    }
+
+    function renderEditPostForm(containerElement, data) {
+        renderAddPostForm(containerElement);
+        containerElement.firstChild.insertBefore(element('div', null, data.id, {
+            id: 'current-edit',
+        }), containerElement.firstChild.firstChild);
+        document.getElementById('add-post-description').value = data.description;
+        let confirmEditButton = document.getElementById('confirm-add-post-button');
+        confirmEditButton.removeEventListener('click', actions.confirmAddPost);
+        confirmEditButton.addEventListener('click', actions.confirmEditPost);
     }
 
     function getPostContainer() {
@@ -70,8 +87,14 @@ var domModule = (function () {
         let data = photoPostsModule.getPhotoPosts(currentSkip, TOP, {});
         currentSkip += TOP;
 
-        for (let i = 0; i < TOP; i++)
+        for (let i = 0; i < data.length; i++)
             containerElement.appendChild(generatePostElement(data[i]));
+
+        edits = containerElement.getElementsByClassName('fas fa-pencil-alt');
+        for (let i = 0; i < edits.length; i++) {
+            edits[i].addEventListener('click', actions.editPost);
+            edits[i].nextSibling.addEventListener('click', actions.deletePost);
+        }
         return data.length >= TOP;
     }
 
@@ -169,6 +192,14 @@ var domModule = (function () {
         // element.setAttribute('disabled', 'disabled');
     }
 
+    function enableElementBy(props, listener) {
+        let element;
+        if (props.hasOwnProperty('id'))
+            element = document.getElementById(props.id);
+        else if (props.hasOwnProperty('class'))
+            element = document.getElementsByClass(props.class)[0];
+        element.addEventListener('click', listener);
+    }
 
     return {
         renderFeed: renderFeed,
@@ -177,7 +208,9 @@ var domModule = (function () {
         editPost: editPost,
         renderUser: renderUser,
         disableElementBy: disableElementBy,
+        enableElementBy: enableElementBy,
         renderAddPostButton: renderAddPostButton,
-        renderAddPostForm: renderAddPostForm
+        renderAddPostForm: renderAddPostForm,
+        renderEditPostForm: renderEditPostForm,
     }
 })();
