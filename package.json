@@ -1,0 +1,19 @@
+{
+  "name": "up",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelinaKhilman/up.git"
+  },
+  "author": "angelinakhilman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AngelinaKhilman/up/issues"
+  },
+  "homepage": "https://github.com/AngelinaKhilman/up#readme"
+}
