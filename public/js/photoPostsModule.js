@@ -12,6 +12,13 @@ let photoPostsModule = (function () {
     };
 
     function getPhotoPosts(skip = 0, top = 10, filterConfig = {}) {
+        if (typeof skip === 'string')
+            skip = parseInt(skip);
+        if (typeof top === 'string')
+            top = parseInt(top);
+
+        loadPostsData();
+
         let array = postsData;
 
         function filter(array, field, filterConfig) {
@@ -25,11 +32,17 @@ let photoPostsModule = (function () {
     }
 
     function getPhotoPost(id) {
+        if (typeof id === 'string')
+            id = parseInt(id);
+
+        loadPostsData();
+
         return postsData.find(post => post.id == id);
     };
 
     function validatePhotoPost(post) {
-        debugger;
+        loadPostsData();
+
         let fieldsToCheck = Object.keys(postsData[0]);
 
         // существование и типы
@@ -53,6 +66,8 @@ let photoPostsModule = (function () {
     }
 
     function addPhotoPost(post) {
+        loadPostsData();
+
         post.id = (parseInt(postsData[postsData.length - 1].id) + 1).toString();
         if (!validatePhotoPost(post))
             return false;
@@ -65,6 +80,8 @@ let photoPostsModule = (function () {
     }
 
     function editPhotoPost(id, changes) {
+        loadPostsData();
+
         let postToChange = postsData.find(post => post.id === id);
         if (postToChange != undefined) {
             changes.id = id.toString();
@@ -86,6 +103,8 @@ let photoPostsModule = (function () {
     }
 
     function removePhotoPost(id) {
+        loadPostsData();
+
         let index = postsData.findIndex(post => post.id === id);
         if (index != -1) {
             postsData.splice(index, 1);
@@ -101,8 +120,23 @@ let photoPostsModule = (function () {
             postsData = posts;
     }
 
+    function loadPostsData() {
+        if (!postsData) {
+            const fs = require('fs');
+            var path = require('path');
+            postsData = JSON.parse(fs.readFileSync(__dirname + '/../../server/data/posts.json'));
+        }
+    }
+
     function synchronizeDatabase() {
-        window.localStorage.setItem('posts', JSON.stringify(postsData));
+        if (postsData) {
+            const fs = require('fs');
+            var path = require('path');
+            fs.writeFile(__dirname + '/../../server/data/posts.json', JSON.stringify(postsData), (err) => {
+                if (err) throw err;
+            });
+        }
+        // window.localStorage.setItem('posts', JSON.stringify(postsData));
     }
 
 
@@ -116,3 +150,7 @@ let photoPostsModule = (function () {
         loadPosts: loadPosts
     }
 }());
+
+
+
+module.exports = photoPostsModule;
